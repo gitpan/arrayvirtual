@@ -1,0 +1,25 @@
+#!/usr/bin/perl -w
+
+use strict;
+use lib '/home/phil/perls';
+use Array::Virtual;
+
+my @names;
+
+tie @names, "Array::Virtual", "myarray", 0644;
+
+push @names, "Phil$$", "Chuck$$";
+unshift @names, "Lisa$$", "Janet$$";
+#my $first = shift @names;
+#my $second = pop @names;
+
+#print "pulled $first and $second from list\n";
+
+my $name;
+
+print "number of names: " . scalar @names . "\n";
+foreach $name (@names) {
+  print "$name\n";
+}
+
+if (exists $names[4]) { print "found 4\n"; }
